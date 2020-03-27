@@ -55,6 +55,19 @@
             "src/Repository/.gitignore"
         ]
     },
+    "doctrine/doctrine-migrations-bundle": {
+        "version": "1.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.2",
+            "ref": "c1431086fec31f17fbcfe6d6d7e92059458facc1"
+        },
+        "files": [
+            "config/packages/doctrine_migrations.yaml",
+            "src/Migrations/.gitignore"
+        ]
+    },
     "doctrine/event-manager": {
         "version": "1.1.0"
     },
@@ -66,6 +79,9 @@
     },
     "doctrine/lexer": {
         "version": "1.2.0"
+    },
+    "doctrine/migrations": {
+        "version": "2.2.1"
     },
     "doctrine/orm": {
         "version": "v2.7.2"
@@ -94,8 +110,14 @@
             "config/packages/nelmio_cors.yaml"
         ]
     },
+    "nikic/php-parser": {
+        "version": "v4.3.0"
+    },
     "ocramius/package-versions": {
         "version": "1.5.1"
+    },
+    "ocramius/proxy-manager": {
+        "version": "2.2.3"
     },
     "php": {
         "version": "7.3"
@@ -217,6 +239,15 @@
     "symfony/inflector": {
         "version": "v5.0.6"
     },
+    "symfony/maker-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
+        }
+    },
     "symfony/mime": {
         "version": "v5.0.6"
     },
@@ -279,6 +310,9 @@
     "symfony/service-contracts": {
         "version": "v2.0.1"
     },
+    "symfony/stopwatch": {
+        "version": "v5.0.6"
+    },
     "symfony/translation-contracts": {
         "version": "v2.0.1"
     },
@@ -332,5 +366,11 @@
     },
     "willdurand/negotiation": {
         "version": "v2.3.1"
+    },
+    "zendframework/zend-code": {
+        "version": "3.4.1"
+    },
+    "zendframework/zend-eventmanager": {
+        "version": "3.2.1"
     }
 }
