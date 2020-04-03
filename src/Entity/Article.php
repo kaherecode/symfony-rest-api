@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"article:read"}},
+ *     denormalizationContext={"groups"={"article:write"}}
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  */
 class Article
@@ -15,41 +19,57 @@ class Article
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @Groups("article:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @Groups({"article:read", "article:write"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @Groups("article:read")
      */
     private $slug;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     *
+     * @Groups({"article:read", "article:write"})
      */
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Groups({"article:read", "article:write"})
      */
     private $picture;
 
     /**
      * @ORM\Column(type="boolean")
+     *
+     * @Groups("article:read")
      */
     private $isPublished;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @Groups("article:read")
      */
     private $publishedAt;
 
     /**
      * @ORM\Column(type="datetime")
+     *
+     * @Groups("article:read")
      */
     private $updatedAt;
 
