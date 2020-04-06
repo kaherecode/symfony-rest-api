@@ -251,7 +251,13 @@
     "symfony/mime": {
         "version": "v5.0.6"
     },
+    "symfony/polyfill-intl-grapheme": {
+        "version": "v1.15.0"
+    },
     "symfony/polyfill-intl-idn": {
+        "version": "v1.15.0"
+    },
+    "symfony/polyfill-intl-normalizer": {
         "version": "v1.15.0"
     },
     "symfony/polyfill-mbstring": {
@@ -312,6 +318,9 @@
     },
     "symfony/stopwatch": {
         "version": "v5.0.6"
+    },
+    "symfony/string": {
+        "version": "v5.0.7"
     },
     "symfony/translation-contracts": {
         "version": "v2.0.1"
