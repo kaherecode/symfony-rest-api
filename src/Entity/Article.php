@@ -92,7 +92,7 @@ class Article
     private $comments;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="articles", cascade="persist")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="articles")
      *
      * @Groups({"article:read", "article:write"})
      */
