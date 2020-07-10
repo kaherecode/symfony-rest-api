@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -23,7 +25,7 @@ class User implements UserInterface
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      *
-     * @Groups("user:read")
+     * @Groups({"user:read", "article:read"})
      */
     private $id;
 
@@ -50,7 +52,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Groups({"user:read", "user:write"})
+     * @Groups({"user:read", "user:write", "article:read"})
      */
     private $username;
 
@@ -67,6 +69,18 @@ class User implements UserInterface
      * @SerializedName("password")
      */
     private $plainPassword;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="author")
+     *
+     * @Groups("user:read")
+     */
+    private $articles;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -167,6 +181,37 @@ class User implements UserInterface
     public function setPlainPassword(string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->contains($article)) {
+            $this->articles->removeElement($article);
+            // set the owning side to null (unless already changed)
+            if ($article->getAuthor() === $this) {
+                $article->setAuthor(null);
+            }
+        }
 
         return $this;
     }
